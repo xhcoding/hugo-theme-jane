@@ -2,10 +2,10 @@
 {{ if hugo.IsMultilingual }}
   {{/* Add translations */}}
   {{ range .Translations }}
-  <link rel="alternate" hreflang="{{ .Site.LanguageCode }}" href="{{ .Permalink }}" />
+  <link rel="alternate" hreflang="{{ .Site.Language.Locale }}" href="{{ .Permalink }}" />
   {{ end }}
   {{/* Add self-referencing hreflang */}}
-  <link rel="alternate" hreflang="{{ .Site.LanguageCode }}" href="{{ .Permalink }}" />
+  <link rel="alternate" hreflang="{{ .Site.Language.Locale }}" href="{{ .Permalink }}" />
 {{ end }}
 
 <meta name="renderer" content="webkit" />

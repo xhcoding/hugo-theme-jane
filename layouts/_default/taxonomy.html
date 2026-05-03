@@ -4,14 +4,14 @@
 
   {{- if eq .Data.Singular "author" -}}
     {{/* Handle author display name */}}
-    {{- $author := (index (.Site.Data.authors | default dict) .Title) -}}
+    {{- $author := (index (hugo.Data.authors | default dict) .Title) -}}
     {{- $author_lang := (index ($author | default dict) .Site.Language.Lang) -}}
     {{- $displayName = $author_lang.name.display | default $author.name.display | default .Title -}}
   {{- else if eq .Data.Singular "category" -}}
     {{/* Handle category display name */}}
     {{- $category_key := lower .Title -}}
-    {{- if index .Site.Data "categories" -}}
-      {{- with (index .Site.Data.categories $category_key) -}}
+    {{- if index hugo.Data "categories" -}}
+      {{- with (index hugo.Data.categories $category_key) -}}
         {{/* Handle both single language and multilingual cases */}}
         {{- if reflect.IsMap .name -}}
           {{/* For multilingual: try current language first, then fallback to default */}}
@@ -51,8 +51,8 @@
       {{/* Get category display name */}}
       {{- $category_key := lower .Title -}}
       {{- $displayName := $category_key -}}
-      {{ if index .Site.Data "categories" }}
-        {{ with (index .Site.Data.categories $category_key) }}
+      {{ if index hugo.Data "categories" }}
+        {{ with (index hugo.Data.categories $category_key) }}
           {{/* Handle both single language and multilingual cases */}}
           {{ if reflect.IsMap .name }}
             {{ $displayName = index .name $.Site.Language.Lang | default .name.default | default $category_key }}
@@ -68,7 +68,7 @@
       {{ $show_category_nav = true }}
     {{ else if eq .Data.Singular "author" }}
       {{/* Get author display name */}}
-      {{- $author := (index (.Site.Data.authors | default dict) .Title) -}}
+      {{- $author := (index (hugo.Data.authors | default dict) .Title) -}}
       {{- $author_lang := (index ($author | default dict) .Site.Language.Lang) -}}
       {{- $displayName := $author_lang.name.display | default $author.name.display | default .Title -}}
       {{ $title_block = printf `<div class="archive-title author">

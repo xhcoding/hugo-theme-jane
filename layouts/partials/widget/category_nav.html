@@ -16,8 +16,8 @@
       {{ $displayName := $name }}
       {{ $categoryURL := .Permalink }}  {{/* Default URL */}}
 
-      {{ if index $.Site.Data "categories" }}
-        {{ with (index $.Site.Data.categories $name) }}
+      {{ if index hugo.Data "categories" }}
+        {{ with (index hugo.Data.categories $name) }}
           {{ $weight = .weight | default 100 }}
 
           {{/* Handle both single language and multilingual cases */}}
